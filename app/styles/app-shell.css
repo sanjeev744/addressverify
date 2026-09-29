@@ -1,0 +1,239 @@
+/* Shared AddressVerify admin shell — wider pages, motion, card hover */
+
+.av-app {
+  --av-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --av-green: #008060;
+  --av-green-soft: rgba(0, 128, 96, 0.09);
+  --av-page-max: 1400px;
+  --av-border: #e3e3e3;
+  width: 100%;
+}
+
+@keyframes avAppFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Widen every Polaris page inside the embedded app */
+.av-app .Polaris-Page {
+  max-width: var(--av-page-max) !important;
+  width: 100%;
+  margin-inline: auto;
+  padding: 50px;
+  box-sizing: border-box;
+}
+
+.av-app .Polaris-Page--fullWidth {
+  max-width: var(--av-page-max) !important;
+}
+
+.av-app .Polaris-Page__Content {
+  padding-block-end: 2rem;
+}
+
+.av-app .Polaris-Header-Title {
+  color: #202223;
+}
+
+.av-app .Polaris-Page-Header .Polaris-Text--subdued {
+  color: #6d7175;
+}
+
+/* Page header entrance */
+.av-app .Polaris-Header-Title,
+.av-app .Polaris-Header-Title__SubtitleWrapper,
+.av-app .Polaris-Page-Header--mobileView,
+.av-app .Polaris-Page-Header--mediumTitle {
+  animation: avAppFadeUp 0.45s var(--av-ease) both;
+}
+
+/* Cards / bevel surfaces */
+.av-app .Polaris-ShadowBevel,
+.av-app .Polaris-LegacyCard,
+.av-app .Polaris-Box > .Polaris-ShadowBevel {
+  transition:
+    transform 0.28s var(--av-ease),
+    box-shadow 0.28s var(--av-ease),
+    border-color 0.25s ease !important;
+}
+
+.av-app .Polaris-ShadowBevel:hover,
+.av-app .Polaris-LegacyCard:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08) !important;
+}
+
+/* Layout sections stagger in (top-level only) */
+.av-app .Polaris-Page__Content > .Polaris-Box > .Polaris-BlockStack > .Polaris-ShadowBevel,
+.av-app .Polaris-Page__Content > .Polaris-Box > .Polaris-BlockStack > .Polaris-LegacyCard,
+.av-app .Polaris-Page__Content > .Polaris-Box > .Polaris-BlockStack > .Polaris-Banner,
+.av-app .Polaris-Page__Content > .Polaris-Box > .Polaris-BlockStack > .Polaris-Layout,
+.av-app .Polaris-Page__Content > .Polaris-Box > .Polaris-BlockStack > .av-dash__section,
+.av-app .Polaris-Page__Content > .Polaris-Box > .Polaris-BlockStack > .av-page-block,
+.av-app .Polaris-Page__Content > .Polaris-Box > .Polaris-BlockStack > .av-plan-grid,
+.av-app .Polaris-Page__Content > .Polaris-Box > .Polaris-BlockStack > .av-summary-strip,
+.av-app .Polaris-Page__Content > .Polaris-Box > .Polaris-BlockStack > .av-metrics-grid,
+.av-app .Polaris-Layout > .Polaris-Layout__Section {
+  animation: avAppFadeUp 0.5s var(--av-ease) both;
+}
+
+.av-app .Polaris-Page__Content > .Polaris-Box > .Polaris-BlockStack > *:nth-child(1),
+.av-app .Polaris-Layout > .Polaris-Layout__Section:nth-child(1) {
+  animation-delay: 0.02s;
+}
+.av-app .Polaris-Page__Content > .Polaris-Box > .Polaris-BlockStack > *:nth-child(2),
+.av-app .Polaris-Layout > .Polaris-Layout__Section:nth-child(2) {
+  animation-delay: 0.06s;
+}
+.av-app .Polaris-Page__Content > .Polaris-Box > .Polaris-BlockStack > *:nth-child(3),
+.av-app .Polaris-Layout > .Polaris-Layout__Section:nth-child(3) {
+  animation-delay: 0.1s;
+}
+.av-app .Polaris-Page__Content > .Polaris-Box > .Polaris-BlockStack > *:nth-child(4),
+.av-app .Polaris-Layout > .Polaris-Layout__Section:nth-child(4) {
+  animation-delay: 0.14s;
+}
+.av-app .Polaris-Page__Content > .Polaris-Box > .Polaris-BlockStack > *:nth-child(5),
+.av-app .Polaris-Layout > .Polaris-Layout__Section:nth-child(5) {
+  animation-delay: 0.18s;
+}
+.av-app .Polaris-Page__Content > .Polaris-Box > .Polaris-BlockStack > *:nth-child(6),
+.av-app .Polaris-Layout > .Polaris-Layout__Section:nth-child(6) {
+  animation-delay: 0.22s;
+}
+.av-app .Polaris-Page__Content > .Polaris-Box > .Polaris-BlockStack > *:nth-child(7),
+.av-app .Polaris-Layout > .Polaris-Layout__Section:nth-child(7) {
+  animation-delay: 0.26s;
+}
+.av-app .Polaris-Page__Content > .Polaris-Box > .Polaris-BlockStack > *:nth-child(8),
+.av-app .Polaris-Layout > .Polaris-Layout__Section:nth-child(8) {
+  animation-delay: 0.3s;
+}
+.av-app .Polaris-Page__Content > .Polaris-Box > .Polaris-BlockStack > *:nth-child(9),
+.av-app .Polaris-Layout > .Polaris-Layout__Section:nth-child(9) {
+  animation-delay: 0.34s;
+}
+.av-app .Polaris-Page__Content > .Polaris-Box > .Polaris-BlockStack > *:nth-child(n + 10),
+.av-app .Polaris-Layout > .Polaris-Layout__Section:nth-child(n + 10) {
+  animation-delay: 0.38s;
+}
+
+/* Metrics grid used on Analytics */
+.av-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.85rem;
+}
+
+@media (min-width: 720px) {
+  .av-metrics-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1100px) {
+  .av-metrics-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.av-metrics-grid .av-stat {
+  animation: avAppFadeUp 0.5s var(--av-ease) both;
+}
+
+.av-metrics-grid .av-stat:nth-child(1) { animation-delay: 0.04s; }
+.av-metrics-grid .av-stat:nth-child(2) { animation-delay: 0.08s; }
+.av-metrics-grid .av-stat:nth-child(3) { animation-delay: 0.12s; }
+.av-metrics-grid .av-stat:nth-child(4) { animation-delay: 0.16s; }
+.av-metrics-grid .av-stat:nth-child(5) { animation-delay: 0.2s; }
+.av-metrics-grid .av-stat:nth-child(6) { animation-delay: 0.24s; }
+.av-metrics-grid .av-stat:nth-child(7) { animation-delay: 0.28s; }
+.av-metrics-grid .av-stat:nth-child(8) { animation-delay: 0.32s; }
+.av-metrics-grid .av-stat:nth-child(9) { animation-delay: 0.36s; }
+.av-metrics-grid .av-stat:nth-child(10) { animation-delay: 0.4s; }
+.av-metrics-grid .av-stat:nth-child(11) { animation-delay: 0.44s; }
+.av-metrics-grid .av-stat:nth-child(12) { animation-delay: 0.48s; }
+
+/* Buttons subtly lift */
+.av-app .Polaris-Button:not(.Polaris-Button--disabled):hover {
+  transform: translateY(-1px);
+  transition: transform 0.2s var(--av-ease);
+}
+
+/* Data tables feel less cramped on wide layouts */
+.av-app .Polaris-DataTable {
+  width: 100%;
+}
+
+.av-app .Polaris-DataTable__Table {
+  min-width: 100%;
+}
+
+/* Analytics / generic metric grids using Layout oneThird */
+.av-app .Polaris-Layout .av-stat {
+  height: 100%;
+}
+
+/* Billing plan cards already have custom chrome; ensure they animate in */
+.av-app .av-plan-grid > * {
+  animation: avAppFadeUp 0.55s var(--av-ease) both;
+}
+.av-app .av-plan-grid > *:nth-child(1) {
+  animation-delay: 0.08s;
+}
+.av-app .av-plan-grid > *:nth-child(2) {
+  animation-delay: 0.16s;
+}
+.av-app .av-plan-grid > *:nth-child(3) {
+  animation-delay: 0.24s;
+}
+
+.av-app .av-plan-card {
+  transition:
+    transform 0.3s var(--av-ease),
+    box-shadow 0.3s var(--av-ease),
+    outline-color 0.25s ease !important;
+}
+
+.av-app .av-plan-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 36px rgba(15, 23, 42, 0.1) !important;
+}
+
+/* Summary strips */
+.av-app .av-summary-strip {
+  transition: transform 0.28s var(--av-ease), box-shadow 0.28s var(--av-ease);
+}
+
+.av-app .av-summary-strip:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.07);
+}
+
+@media (max-width: 767px) {
+  .av-app {
+    --av-page-max: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .av-app *,
+  .av-app *::before,
+  .av-app *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .av-app .Polaris-ShadowBevel:hover,
+  .av-app .Polaris-LegacyCard:hover,
+  .av-app .av-plan-card:hover,
+  .av-app .av-summary-strip:hover {
+    transform: none !important;
+  }
+}

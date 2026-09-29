@@ -1,0 +1,7 @@
+name = "addressverify"
+roles = ["frontend", "backend"]
+webhooks_path = "/webhooks/app/uninstalled"
+
+[commands]
+predev = "node scripts/prisma-generate.mjs"
+dev = "npm exec remix vite:dev"

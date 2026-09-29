@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FAQ | AddressVerify Shopify Address Validator</title>
+  <meta name="description" content="Answers about AddressVerify setup, $0.02 usage billing, Lite vs Full checks, tags, holds, and Shopify checkout address validation." />
+  <meta name="keywords" content="AddressVerify FAQ, Shopify address validator questions, address validation billing, checkout validation setup, PO Box rules Shopify" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+  <meta name="googlebot" content="index, follow" />
+  <meta name="author" content="Ekrocx Technologies" />
+  <meta name="application-name" content="AddressVerify" />
+  <meta name="theme-color" content="#0d3a2c" />
+  <link rel="canonical" href="/faq" />
+  <link rel="alternate" hreflang="en" href="/faq" />
+  <link rel="alternate" hreflang="x-default" href="/faq" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/favicon.png" type="image/png" sizes="512x512" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="AddressVerify" />
+  <meta property="og:title" content="FAQ | AddressVerify Shopify Address Validator" />
+  <meta property="og:description" content="Setup, billing, and checkout validation answers for AddressVerify." />
+  <meta property="og:url" content="/faq" />
+  <meta property="og:image" content="/images/og-cover.png" />
+  <meta property="og:image:alt" content="AddressVerify Shopify address validation" />
+  <meta property="og:locale" content="en_US" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="FAQ | AddressVerify" />
+  <meta name="twitter:description" content="Setup, billing, and checkout validation answers for AddressVerify." />
+  <meta name="twitter:image" content="/images/og-cover.png" />
+  <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"FAQPage","url":"/faq","mainEntity":[
+      {"@type":"Question","name":"What does AddressVerify do?","acceptedAnswer":{"@type":"Answer","text":"It validates shipping addresses during Shopify checkout and again after the order is placed."}},
+      {"@type":"Question","name":"Will it slow down or block checkout if a provider is down?","acceptedAnswer":{"@type":"Answer","text":"No, unless you turn on Fail closed. AddressVerify fails over to your fallback provider, then the built-in engine."}},
+      {"@type":"Question","name":"How is billing calculated?","acceptedAnswer":{"@type":"Answer","text":"Your per-order rate depends on store volume: $0.40 (1–500 orders), $0.30 (501–1,500), or $0.20 (1,501+). Shopify charges once per unique order. Checkout and post-checkout on the same order are one charge."}},
+      {"@type":"Question","name":"What is Lite vs Full validation?","acceptedAnswer":{"@type":"Answer","text":"Lite checks house numbers, PO Boxes, and special characters. Full adds street, city, postal, typos, incomplete addresses, and suggestions."}},
+      {"@type":"Question","name":"Do I need theme code?","acceptedAnswer":{"@type":"Answer","text":"No. Add the AddressVerify block on Thank You, Order Status, and optionally Checkout, then save in the app."}}
+    ]}
+  </script>
+  <link rel="preconnect" href="https://cdn.shopify.com/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://cdn.shopify.com/static/fonts/inter/v4/styles.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" />
+  <link rel="stylesheet" href="/css/site.css?v=r2" />
+</head>
+<body>
+  <div class="av-site">
+    <div class="av-orb av-orb-a"></div>
+    <div class="av-orb av-orb-b"></div>
+    <header class="av-header">
+      <div class="av-wrap av-header-inner">
+        <a class="av-logo" href="/"><span class="av-mark">A</span>AddressVerify</a>
+        <button class="av-nav-toggle" type="button" aria-expanded="false" aria-controls="av-nav" aria-label="Open menu">
+          <span></span><span></span><span></span>
+        </button>
+        <nav class="av-nav" id="av-nav" aria-label="Primary">
+          <a href="/tutorial">Tutorial</a>
+          <a href="/documentation">Docs</a>
+          <a href="/pricing">Pricing</a>
+          <a href="/about">About</a>
+          <a class="active" href="/faq">FAQ</a>
+          <a class="av-btn av-nav-cta" href="/pricing">Get started</a>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <section class="av-page-hero">
+        <div class="av-wrap" data-reveal>
+          <p class="av-kicker">FAQ</p>
+          <h1>Questions merchants ask before they go live</h1>
+          <p class="av-lead">Setup, billing, checkout behavior, and data handling — in one place.</p>
+        </div>
+      </section>
+      <section class="av-section av-faq">
+        <div class="av-wrap" data-reveal>
+          <details><summary>What does AddressVerify do?</summary><p>It validates shipping addresses during Shopify checkout and again after the order is placed. It can suggest a correction, tag the order, hold fulfillment, or update the address when your rules allow it.</p></details>
+          <details><summary>Will it slow down or block checkout if a provider is down?</summary><p>No, unless you turn on Fail closed. AddressVerify fails over to your fallback provider, then the built-in engine.</p></details>
+          <details><summary>How is billing calculated?</summary><p>Your per-order rate depends on store volume: $0.40 (1–500), $0.30 (501–1,500), or $0.20 (1,501+). Shopify charges once per unique order. Checkout and post-checkout on the same order are one charge. Admin Test Address runs and provider outages are not billed. There is no mandatory monthly subscription.</p></details>
+          <details><summary>What is Lite vs Full validation?</summary><p>Lite checks house numbers, PO Boxes, and special characters. Full adds street, city, postal, typos, incomplete addresses, and suggestions.</p></details>
+          <details><summary>Do I need theme code?</summary><p>No. Add the AddressVerify block on Thank You, Order Status, and optionally Checkout in the Shopify checkout editor, then save in the app.</p></details>
+          <details><summary>Why was an order tagged but checkout was not blocked?</summary><p>Warn, Review, and Allow let checkout continue. Post-checkout validation can still tag, hold, or auto-fix.</p></details>
+          <details><summary>Are tags duplicated on every run?</summary><p>No. AddressVerify removes the address tags it manages, then writes the current set.</p></details>
+          <details><summary>Does AddressVerify store customer emails and phone numbers?</summary><p>The merchant dashboard does not show emails or phone numbers. Customer identifiers used for logs are hashed. See the privacy policy for details.</p></details>
+          <details><summary>Can I use my own address API?</summary><p>Yes. Point AddressVerify at Google, Loqate, Smarty, or a custom HTTP provider, and set a failover.</p></details>
+          <details><summary>How do I get help?</summary><p>Email support@addressverify.app with the shop domain, order name, and the validation log time. Do not send customer emails or phones unless they are required to reproduce the issue.</p></details>
+        </div>
+      </section>
+    </main>
+    <footer class="av-footer">
+      <div class="av-wrap av-footer-inner">
+        <div>
+          <p class="av-logo" style="margin:0"><span class="av-mark">A</span>AddressVerify</p>
+          <p style="color:var(--av-muted);max-width:420px">Shopify address validation for checkout and post-checkout. Built by Ekrocx Technologies. Not affiliated with Shopify Inc.</p>
+        </div>
+        <div class="av-footer-links">
+          <a href="/tutorial">Tutorial</a>
+          <a href="/documentation">Docs</a>
+          <a href="/pricing">Pricing</a>
+          <a href="/about">About</a>
+          <a href="/faq">FAQ</a>
+          <a href="/privacy-policy">Privacy policy</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+  <script src="/js/site.js?v=r2"></script>
+</body>
+</html>

@@ -1,0 +1,245 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Session {
+  id                  String    @id
+  shop                String
+  state               String
+  isOnline            Boolean   @default(false)
+  scope               String?   @db.Text
+  expires             DateTime?
+  accessToken         String    @db.Text
+  userId              BigInt?
+  firstName           String?
+  lastName            String?
+  email               String?
+  accountOwner        Boolean   @default(false)
+  locale              String?
+  collaborator        Boolean?  @default(false)
+  emailVerified       Boolean?  @default(false)
+  refreshToken        String?   @db.Text
+  refreshTokenExpires DateTime?
+
+  @@map("session")
+}
+
+model ShopSettings {
+  id                         String    @id @default(cuid())
+  shop                       String    @unique
+  validationEnabled          Boolean   @default(true)
+  failClosed                 Boolean   @default(false)
+  providerType               String    @default("builtin")
+  providerApiUrl             String?   @db.Text
+  providerApiKey             String?   @db.Text
+  providerTimeoutMs          Int       @default(2500)
+  fallbackProviderType       String    @default("builtin")
+  fallbackProviderApiUrl     String?   @db.Text
+  fallbackProviderApiKey     String?   @db.Text
+  functionId                 String?
+  validationGid              String?
+  onboarded                  Boolean   @default(false)
+  onboardingStep             Int       @default(0)
+  postCheckoutEnabled        Boolean   @default(true)
+  postCheckoutMode           String    @default("auto")
+  postCheckoutMinConfidence  Float     @default(0.8)
+  holdInvalid                Boolean   @default(true)
+  holdUnconfirmed            Boolean   @default(false)
+  holdPoBox                  Boolean   @default(false)
+  holdReview                 Boolean   @default(true)
+  klaviyoEnabled             Boolean   @default(false)
+  klaviyoApiKey              String?   @db.Text
+  planHandle                 String    @default("usage_tier_1")
+  billingStatus              String    @default("none")
+  monthlyValidations         Int       @default(0)
+  usageResetAt               DateTime?
+  shopGid                    String?
+  usageLineItemId            String?
+  billingOrderCountOverride  Int?
+  avgOrderValue              Float     @default(85)
+  avgReshipCost              Float     @default(12)
+  avgSupportCost             Float     @default(8)
+  estimatedCorrectionRate    Float     @default(0.7)
+  createdAt                  DateTime  @default(now())
+  updatedAt                  DateTime  @updatedAt
+
+  @@map("shopsettings")
+}
+
+model ValidationRule {
+  id      String  @id @default(cuid())
+  shop    String
+  ruleKey String
+  enabled Boolean @default(true)
+  action  String  @default("block")
+
+  @@unique([shop, ruleKey])
+  @@index([shop])
+
+  @@map("validationrule")
+}
+
+model ValidationMessage {
+  id         String @id @default(cuid())
+  shop       String
+  messageKey String
+  title      String @db.Text
+  body       String @db.Text
+
+  @@unique([shop, messageKey])
+  @@index([shop])
+
+  @@map("validationmessage")
+}
+
+model MessageTranslation {
+  id         String @id @default(cuid())
+  shop       String
+  messageKey String
+  locale     String
+  title      String @db.Text
+  body       String @db.Text
+
+  @@unique([shop, messageKey, locale])
+  @@index([shop, locale])
+
+  @@map("messagetranslation")
+}
+
+model OrderTagSetting {
+  id     String @id @default(cuid())
+  shop   String
+  tagKey String
+  tag    String
+
+  @@unique([shop, tagKey])
+  @@index([shop])
+
+  @@map("ordertagsetting")
+}
+
+model PoBoxRule {
+  id              String  @id @default(cuid())
+  shop            String
+  name            String
+  action          String  @default("block")
+  country         String  @default("")
+  shippingMethod  String  @default("")
+  shippingZone    String  @default("")
+  enabled         Boolean @default(true)
+
+  @@index([shop])
+
+  @@map("poboxrule")
+}
+
+model ValidationLog {
+  id                     String   @id @default(cuid())
+  shop                   String
+  createdAt              DateTime @default(now())
+  checkoutRef            String?
+  orderRef               String?
+  customerId             String?
+  country                String?
+  postalCode             String?
+  locale                 String?
+  shippingMethod         String?
+  originalAddress        String   @db.Text
+  correctedAddress       String?  @db.Text
+  result                 String
+  errorType              String?
+  actionTaken            String?
+  confidence             Float?
+  source                 String   @default("checkout")
+  held                   Boolean  @default(false)
+  reviewRequired         Boolean  @default(false)
+  correctedAutomatically Boolean  @default(false)
+  manuallyCorrected      Boolean  @default(false)
+
+  @@index([shop, createdAt])
+  @@index([shop, result])
+  @@index([shop, errorType])
+  @@index([shop, customerId])
+  @@index([shop, orderRef])
+
+  @@map("validationlog")
+}
+
+model OrderHold {
+  id               String    @id @default(cuid())
+  shop             String
+  orderId          String
+  orderName        String
+  reason           String    @db.Text
+  errorType        String?
+  status           String    @default("open")
+  originalAddress  String    @db.Text
+  suggestedAddress String?   @db.Text
+  fulfillmentIds   String?   @db.Text
+  createdAt        DateTime  @default(now())
+  releasedAt       DateTime?
+
+  @@index([shop, status])
+  @@index([shop, orderId])
+
+  @@map("orderhold")
+}
+
+model BackgroundJob {
+  id        String    @id @default(cuid())
+  shop      String
+  type      String
+  payload   String    @db.Text
+  status    String    @default("queued")
+  attempts  Int       @default(0)
+  nextRunAt DateTime  @default(now())
+  lastError String?   @db.Text
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  @@index([status, nextRunAt])
+  @@index([shop, type])
+
+  @@map("backgroundjob")
+}
+
+model BillingUsage {
+  id            String   @id @default(cuid())
+  shop          String
+  shopId        String?
+  orderId       String
+  period        String
+  validatedAt   DateTime @default(now())
+  billable      Boolean  @default(false)
+  chargeAmount  Float    @default(0)
+  billingStatus String   @default("skipped")
+  skipReason    String?
+  usageRecordId String?
+  source        String?
+  createdAt     DateTime @default(now())
+
+  @@unique([shop, orderId])
+  @@index([shop, period])
+  @@index([shop, billingStatus])
+
+  @@map("billingusage")
+}
+
+model AppEvent {
+  id        String   @id @default(cuid())
+  shop      String
+  level     String
+  message   String   @db.Text
+  context   String?  @db.Text
+  createdAt DateTime @default(now())
+
+  @@index([shop, createdAt])
+  @@index([level, createdAt])
+
+  @@map("appevent")
+}

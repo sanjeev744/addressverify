@@ -1,0 +1,79 @@
+{
+  "usageCurrency": "USD",
+  "plans": [
+    {
+      "handle": "starter",
+      "name": "Starter",
+      "description": "Core checkout validation for smaller catalogs.",
+      "amount": 9.99,
+      "currencyCode": "USD",
+      "interval": "every_30_days",
+      "trialDays": 14,
+      "monthlyValidations": 2000,
+      "supportTier": "standard",
+      "features": ["checkout", "tags", "test", "translations"]
+    },
+    {
+      "handle": "growth",
+      "name": "Growth",
+      "description": "Post-checkout correction, analytics, and advanced rules.",
+      "amount": 29.99,
+      "currencyCode": "USD",
+      "interval": "every_30_days",
+      "trialDays": 14,
+      "monthlyValidations": 15000,
+      "supportTier": "priority",
+      "features": [
+        "checkout",
+        "tags",
+        "test",
+        "translations",
+        "post_checkout",
+        "analytics",
+        "advanced_rules",
+        "pobox_rules",
+        "calculator"
+      ]
+    },
+    {
+      "handle": "pro",
+      "name": "Pro",
+      "description": "High-volume validation, holds, Klaviyo, and ROI reporting.",
+      "amount": 79.99,
+      "currencyCode": "USD",
+      "interval": "every_30_days",
+      "trialDays": 14,
+      "monthlyValidations": 75000,
+      "usageCappedAmount": 250,
+      "usageTerms": "Additional validations beyond the monthly allowance.",
+      "supportTier": "guided",
+      "features": [
+        "checkout",
+        "tags",
+        "test",
+        "translations",
+        "post_checkout",
+        "analytics",
+        "advanced_rules",
+        "pobox_rules",
+        "calculator",
+        "klaviyo",
+        "holds",
+        "roi"
+      ]
+    },
+    {
+      "handle": "enterprise",
+      "name": "Enterprise",
+      "description": "Custom volume, integrations, and a dedicated success manager.",
+      "amount": null,
+      "currencyCode": "USD",
+      "interval": "every_30_days",
+      "trialDays": 0,
+      "monthlyValidations": null,
+      "contactSales": true,
+      "supportTier": "dedicated",
+      "features": ["*"]
+    }
+  ]
+}

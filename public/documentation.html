@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AddressVerify Documentation | Features and How the App Works</title>
+  <meta name="description" content="AddressVerify documentation: key features, checkout and post-checkout validation, merchant rules, usage billing, tags, holds, and how the Shopify address validator works." />
+  <meta name="keywords" content="AddressVerify documentation, Shopify address validation docs, checkout validation, post-checkout address correction, Lite Full rules, usage billing $0.02" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+  <meta name="googlebot" content="index, follow" />
+  <meta name="author" content="Ekrocx Technologies" />
+  <meta name="application-name" content="AddressVerify" />
+  <meta name="theme-color" content="#0d3a2c" />
+  <link rel="canonical" href="/documentation" />
+  <link rel="alternate" hreflang="en" href="/documentation" />
+  <link rel="alternate" hreflang="x-default" href="/documentation" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/favicon.png" type="image/png" sizes="512x512" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="AddressVerify" />
+  <meta property="og:title" content="AddressVerify Documentation | Features and How the App Works" />
+  <meta property="og:description" content="Key features, screenshots, and a detailed walkthrough of checkout and post-checkout address validation." />
+  <meta property="og:url" content="/documentation" />
+  <meta property="og:image" content="/images/docs-dashboard.png" />
+  <meta property="og:image:alt" content="AddressVerify dashboard screenshot" />
+  <meta property="og:locale" content="en_US" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="AddressVerify Documentation" />
+  <meta name="twitter:description" content="How AddressVerify validates Shopify addresses in checkout and after purchase." />
+  <meta name="twitter:image" content="/images/docs-dashboard.png" />
+  <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"TechArticle","headline":"AddressVerify documentation","url":"/documentation","description":"Key features and how AddressVerify validates Shopify shipping addresses.","author":{"@type":"Organization","name":"Ekrocx Technologies"}}
+  </script>
+  <link rel="preconnect" href="https://cdn.shopify.com/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://cdn.shopify.com/static/fonts/inter/v4/styles.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" />
+  <link rel="stylesheet" href="/css/site.css?v=r2" />
+</head>
+<body>
+  <div class="av-site">
+    <div class="av-orb av-orb-a"></div>
+    <div class="av-orb av-orb-b"></div>
+    <header class="av-header">
+      <div class="av-wrap av-header-inner">
+        <a class="av-logo" href="/"><span class="av-mark">A</span>AddressVerify</a>
+        <button class="av-nav-toggle" type="button" aria-expanded="false" aria-controls="av-nav" aria-label="Open menu">
+          <span></span><span></span><span></span>
+        </button>
+        <nav class="av-nav" id="av-nav" aria-label="Primary">
+          <a href="/tutorial">Tutorial</a>
+          <a class="active" href="/documentation">Docs</a>
+          <a href="/pricing">Pricing</a>
+          <a href="/about">About</a>
+          <a href="/faq">FAQ</a>
+          <a class="av-btn av-nav-cta" href="/pricing">Get started</a>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <section class="av-page-hero">
+        <div class="av-wrap" data-reveal>
+          <p class="av-kicker">Documentation</p>
+          <h1>How AddressVerify works, in detail</h1>
+          <p class="av-lead">This guide covers key features, the checkout and post-checkout flow, merchant rules, billing, and the admin screens you use after install.</p>
+          <div class="av-why-actions">
+            <a class="av-btn av-btn-leaf" href="/tutorial">Open the setup tutorial</a>
+            <a class="av-btn av-btn-ghost" href="#screenshots">Jump to screenshots</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="av-section av-docs">
+        <div class="av-wrap av-docs-layout">
+          <div class="av-docs-rail">
+            <aside class="av-docs-toc" aria-label="On this page">
+              <p class="av-kicker">On this page</p>
+              <a href="#how-it-works">How the app works</a>
+              <a href="#key-features">Key features</a>
+              <a href="#screenshots">Screenshots</a>
+              <a href="#rules">Rules and actions</a>
+              <a href="#billing">Usage billing</a>
+              <a href="#ops">Tags, holds, and Klaviyo</a>
+              <a href="#test">Test Address</a>
+              <a href="#support">Support</a>
+            </aside>
+          </div>
+
+          <div class="av-docs-body">
+            <article id="how-it-works" class="av-docs-block" data-reveal>
+              <p class="av-kicker">Flow</p>
+              <h2>How the app works</h2>
+              <p>AddressVerify sits in two places: during checkout, and again after the order is placed. The same Shopify Order ID is used for both, so a customer is never billed twice for one order.</p>
+              <ol class="av-docs-flow">
+                <li>
+                  <strong>1. Customer enters a shipping address</strong>
+                  <span>On Checkout, Thank You, or Order Status — including Shop Pay, Apple Pay, Google Pay, and PayPal.</span>
+                </li>
+                <li>
+                  <strong>2. AddressVerify runs your enabled checks</strong>
+                  <span>Lite checks house number, PO Boxes, and special characters. Full adds street, city, postal, incomplete addresses, invalid addresses, and typo fixes.</span>
+                </li>
+                <li>
+                  <strong>3. A provider returns a result</strong>
+                  <span>Your primary provider runs first. If it fails, AddressVerify tries the failover, then the built-in engine. Checkout stays open unless you turn on Fail closed.</span>
+                </li>
+                <li>
+                  <strong>4. Your rule action is applied</strong>
+                  <span>Allow does nothing. Warn shows a message. Fix suggests or writes a correction. Block stops checkout. Review lets the order through and flags it for you.</span>
+                </li>
+                <li>
+                  <strong>5. Post-checkout can still save the shipment</strong>
+                  <span>On Thank You and Order Status the customer can accept a suggestion. High-confidence fixes can apply automatically. Invalid or review orders can be held.</span>
+                </li>
+                <li>
+                  <strong>6. Ops and billing are written once</strong>
+                  <span>AddressVerify replaces the address tags it manages, can send a Klaviyo event, and records $0.02 against that unique order. Admin Test Address is not billed.</span>
+                </li>
+              </ol>
+            </article>
+
+            <article id="key-features" class="av-docs-block" data-reveal>
+              <p class="av-kicker">Product</p>
+              <h2>Key features</h2>
+              <div class="av-grid-2">
+                <article class="av-card">
+                  <h3>Checkout validation</h3>
+                  <p>A Checkout UI extension plus a Cart and Checkout Validation Function can warn, suggest, or block before payment. Express wallets are covered when the Function is enabled.</p>
+                </article>
+                <article class="av-card">
+                  <h3>Post-checkout validation</h3>
+                  <p>The same block on Thank You and Order Status catches addresses that skipped a strict checkout, then can auto-fix, tag, or hold fulfillment.</p>
+                </article>
+                <article class="av-card">
+                  <h3>Five actions per check</h3>
+                  <p>Allow, Warn, Fix, Block, or Review. Lite or Full decides which checks run. PO Box rules can override the default by country or shipping method.</p>
+                </article>
+                <article class="av-card">
+                  <h3>Usage billing</h3>
+                  <p>$0.02 once per unique Shopify order. Checkout and post-checkout on the same order are one charge. No mandatory monthly subscription.</p>
+                </article>
+                <article class="av-card">
+                  <h3>Fulfillment tools</h3>
+                  <p>Tags by result, fulfillment holds for invalid / review / PO Box / unconfirmed, Klaviyo events, translations, and a savings calculator.</p>
+                </article>
+                <article class="av-card">
+                  <h3>No-code setup</h3>
+                  <p>Add the app block in the Shopify checkout editor. Typical setup is about 15 minutes. Nothing is live until you click Save settings.</p>
+                </article>
+              </div>
+            </article>
+
+            <article id="screenshots" class="av-docs-block" data-reveal>
+              <p class="av-kicker">Admin and checkout</p>
+              <h2>Screenshots</h2>
+              <p>These screens match the live AddressVerify admin and the customer checkout suggestion. Use them as a map while you set the app up.</p>
+              <div class="av-shot-grid">
+                <figure class="av-shot">
+                  <img src="/images/docs-setup.png" alt="AddressVerify setup screen with Thank You, Order Status, and Lite or Full validation" width="1280" height="720" />
+                  <figcaption>
+                    <strong>Setup</strong>
+                    Add the block to Thank You and Order Status, optionally Checkout, then choose Lite or Full and save.
+                  </figcaption>
+                </figure>
+                <figure class="av-shot">
+                  <img src="/images/docs-dashboard.png" alt="AddressVerify dashboard with usage billing and validation metrics" width="1280" height="720" />
+                  <figcaption>
+                    <strong>Dashboard</strong>
+                    Usage for the current period, addresses checked, valid / invalid counts, corrections, and estimated savings.
+                  </figcaption>
+                </figure>
+                <figure class="av-shot">
+                  <img src="/images/docs-rules.png" alt="AddressVerify validation rules with Allow Warn Fix Block Review actions" width="1280" height="720" />
+                  <figcaption>
+                    <strong>Validation Rules</strong>
+                    Turn each check on or off and set Allow, Warn, Fix, Block, or Review.
+                  </figcaption>
+                </figure>
+                <figure class="av-shot">
+                  <img src="/images/docs-checkout.png" alt="Shopify checkout with an AddressVerify suggested address" width="1280" height="720" />
+                  <figcaption>
+                    <strong>Checkout suggestion</strong>
+                    Customers can accept a normalized address or keep the one they typed.
+                  </figcaption>
+                </figure>
+              </div>
+            </article>
+
+            <article id="rules" class="av-docs-block" data-reveal>
+              <p class="av-kicker">Checks</p>
+              <h2>Rules and actions</h2>
+              <p><strong>Lite</strong> enables house number, PO Boxes, and special characters. <strong>Full</strong> enables the complete set below. You can still change the action for each row on Validation Rules.</p>
+              <div class="av-docs-table-wrap">
+                <table class="av-docs-table">
+                  <thead>
+                    <tr><th>Check</th><th>What it looks for</th><th>Default action</th><th>Mode</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>Require house number</td><td>Street name with no building number</td><td>Block</td><td>Lite + Full</td></tr>
+                    <tr><td>PO Boxes (default)</td><td>PO Box or packing-station text. Override on PO Box Rules</td><td>Block</td><td>Lite + Full</td></tr>
+                    <tr><td>Special characters</td><td>Characters carriers often reject</td><td>Warn</td><td>Lite + Full</td></tr>
+                    <tr><td>Postal / ZIP code</td><td>Format for the selected country</td><td>Block</td><td>Full</td></tr>
+                    <tr><td>City + postal</td><td>City and postal mismatches or city typos</td><td>Warn</td><td>Full</td></tr>
+                    <tr><td>Street name</td><td>Missing, too-short, or likely invalid streets</td><td>Warn</td><td>Full</td></tr>
+                    <tr><td>Incomplete address</td><td>Missing street, city, postal, or country</td><td>Block</td><td>Full</td></tr>
+                    <tr><td>Invalid address</td><td>Provider cannot verify the address</td><td>Review</td><td>Full</td></tr>
+                    <tr><td>Correct common typos</td><td>Normalize common street and city spelling mistakes</td><td>Fix</td><td>Full</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <ul class="av-list">
+                <li><strong>Allow</strong> — do not interrupt checkout.</li>
+                <li><strong>Warn</strong> — show a message and let the customer continue.</li>
+                <li><strong>Fix</strong> — suggest or apply a correction when confidence is high.</li>
+                <li><strong>Block</strong> — stop checkout until the address is fixed.</li>
+                <li><strong>Review</strong> — allow the order, then tag or hold it for your team.</li>
+              </ul>
+            </article>
+
+            <article id="billing" class="av-docs-block" data-reveal>
+              <p class="av-kicker">Shopify usage</p>
+              <h2>Usage billing</h2>
+              <p>AddressVerify uses Shopify usage billing. The charge is <strong>$0.02 once per unique Shopify order</strong>. The Order ID is the idempotency key, so checkout and post-checkout on the same order are not two charges.</p>
+              <ul class="av-list">
+                <li>Admin Test Address runs are not billed.</li>
+                <li>Provider or service errors are not billed.</li>
+                <li>Duplicate processing and cancelled jobs do not add extra charges.</li>
+                <li>There is no mandatory monthly subscription. Shopify still requires a usage cap; the cap is not a monthly price.</li>
+              </ul>
+              <p>The dashboard and Billing page show processed orders, billable orders, estimated charges, and previous-period history.</p>
+            </article>
+
+            <article id="ops" class="av-docs-block" data-reveal>
+              <p class="av-kicker">After the order</p>
+              <h2>Tags, holds, and Klaviyo</h2>
+              <p>When a result is written, AddressVerify removes the address tags it manages, then writes the current set. Default tags include <code>address_valid</code>, <code>address_fixed</code>, <code>address_invalid</code>, <code>address_missing_house_number</code>, <code>address_po_box</code>, <code>address_special_character</code>, <code>address_typo_corrected</code>, <code>address_unconfirmed</code>, and <code>address_review</code>. You can rename them on Setup.</p>
+              <p>Order Holds can pause fulfillment for invalid, review, PO Box, or unconfirmed addresses before a label is bought. The hold reason is incorrect address.</p>
+              <p>Klaviyo is optional. Events include order ID, result, error type, correction status, country, postal code, and timestamp. Full street lines and emails are not sent.</p>
+              <p>Checkout messages can be translated for English, French, German, Spanish, and Italian.</p>
+            </article>
+
+            <article id="test" class="av-docs-block" data-reveal>
+              <p class="av-kicker">Before you go live</p>
+              <h2>Test Address and logs</h2>
+              <p>Use Test Address with a real country and street. It uses the same engine as checkout but does not create a Shopify usage charge. Then place a test order and confirm the block on Thank You and Order Status.</p>
+              <p>Validation Logs show the error type, action taken, whether a correction was applied, and whether the order was held. Analytics rolls those results into error rate, auto-fixes, estimated saved revenue, and ROI.</p>
+            </article>
+
+            <article id="support" class="av-docs-block" data-reveal>
+              <p class="av-kicker">Help</p>
+              <h2>If something looks wrong</h2>
+              <ul class="av-list">
+                <li>Confirm you clicked <strong>Save settings</strong>. Nothing is live until you save.</li>
+                <li>Confirm the AddressVerify block is on Thank You and Order Status, and on Checkout if you want in-checkout suggestions.</li>
+                <li>If checkout was not blocked, check whether the rule action is Allow, Warn, or Review.</li>
+                <li>If a provider is down, AddressVerify fails over. Checkout is not blocked unless Fail closed is on.</li>
+                <li>Email <a href="mailto:support@addressverify.app">support@addressverify.app</a> with the shop domain, order name, and the validation log time. Do not send customer emails or phones unless they are required to reproduce the issue.</li>
+              </ul>
+              <div class="av-why-actions" style="margin-top:24px">
+                <a class="av-btn av-btn-leaf" href="/tutorial">Follow the tutorial</a>
+                <a class="av-btn av-btn-primary" href="/pricing">See pricing</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="av-footer">
+      <div class="av-wrap av-footer-inner">
+        <div>
+          <p class="av-logo" style="margin:0"><span class="av-mark">A</span>AddressVerify</p>
+          <p style="color:var(--av-muted);max-width:420px">Shopify address validation for checkout and post-checkout. Built by Ekrocx Technologies. Not affiliated with Shopify Inc.</p>
+        </div>
+        <div class="av-footer-links">
+          <a href="/tutorial">Tutorial</a>
+          <a href="/documentation">Docs</a>
+          <a href="/pricing">Pricing</a>
+          <a href="/about">About</a>
+          <a href="/faq">FAQ</a>
+          <a href="/privacy-policy">Privacy policy</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+  <script src="/js/site.js?v=r2"></script>
+</body>
+</html>

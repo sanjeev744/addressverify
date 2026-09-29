@@ -1,0 +1,15 @@
+{
+  "name": "AddressVerify",
+  "useSuggested": "Use Suggested Address",
+  "editAddress": "Edit Address",
+  "check": "Check",
+  "notVerifiedTitle": "Your address is not verified",
+  "notVerifiedBody": "We were not able to validate your address. Please recheck your shipping address.",
+  "timeLeft": "Time left to edit your address",
+  "shippingAddress": "Shipping Address",
+  "addressNotFound": "Your address was not found",
+  "chooseSuggestion": "Please choose one of our suggestions or edit your shipping address manually.",
+  "enteredAddress": "Your entered address",
+  "editManually": "Edit address manually",
+  "addressIsCorrect": "My address is correct"
+}

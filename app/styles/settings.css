@@ -1,0 +1,231 @@
+/* Settings page — Polaris-aligned, matches dashboard chrome */
+
+.av-settings {
+  --av-ink: #202223;
+  --av-muted: #6d7175;
+  --av-border: #e1e3e5;
+  --av-green: #008060;
+  --av-bg-soft: #fafbfb;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.av-settings__section {
+  background: #ffffff;
+  border: 1px solid var(--av-border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.av-settings__section-head {
+  padding: 1.15rem 1.35rem 0.85rem;
+  border-bottom: 1px solid #ebebeb;
+  background: var(--av-bg-soft);
+}
+
+.av-settings__section-title {
+  margin: 0;
+  font-size: 0.9375rem;
+  font-weight: 650;
+  color: var(--av-ink);
+  letter-spacing: -0.01em;
+}
+
+.av-settings__section-desc {
+  margin: 0.3rem 0 0;
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  color: var(--av-muted);
+  max-width: 52rem;
+}
+
+.av-settings__section-body {
+  padding: 1.15rem 1.35rem 1.35rem;
+}
+
+.av-settings__status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding: 1.15rem 1.35rem;
+  background: #ffffff;
+  border: 1px solid var(--av-border);
+  border-radius: 12px;
+}
+
+.av-settings__status-copy h2 {
+  margin: 0;
+  font-size: 0.9375rem;
+  font-weight: 650;
+  color: var(--av-ink);
+}
+
+.av-settings__status-copy p {
+  margin: 0.25rem 0 0;
+  font-size: 0.8125rem;
+  color: var(--av-muted);
+}
+
+.av-settings__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.28rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.av-settings__badge--on {
+  background: rgba(0, 128, 96, 0.12);
+  color: var(--av-green);
+}
+
+.av-settings__badge--off {
+  background: #f1f2f3;
+  color: var(--av-muted);
+}
+
+.av-settings__badge-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.av-settings__pages {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+@media (max-width: 900px) {
+  .av-settings__pages {
+    grid-template-columns: 1fr;
+  }
+}
+
+.av-settings__page-link {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--av-border);
+  border-radius: 10px;
+  background: #fff;
+  text-decoration: none !important;
+  color: inherit;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.av-settings__page-link:hover {
+  border-color: rgba(0, 128, 96, 0.45);
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.06);
+}
+
+.av-settings__page-link strong {
+  font-size: 0.875rem;
+  color: var(--av-ink);
+}
+
+.av-settings__page-link span {
+  font-size: 0.75rem;
+  color: var(--av-muted);
+  line-height: 1.4;
+}
+
+.av-settings__checks {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.av-settings__check-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--av-border);
+  border-radius: 10px;
+  background: #fff;
+}
+
+.av-settings__check-row:hover {
+  background: var(--av-bg-soft);
+}
+
+.av-settings__check-copy {
+  min-width: 0;
+}
+
+.av-settings__check-copy strong {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 550;
+  color: var(--av-ink);
+}
+
+.av-settings__check-copy span {
+  display: block;
+  margin-top: 0.2rem;
+  font-size: 0.78rem;
+  line-height: 1.4;
+  color: var(--av-muted);
+}
+
+.av-settings__grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.av-settings__grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+@media (max-width: 900px) {
+  .av-settings__grid-2,
+  .av-settings__grid-3 {
+    grid-template-columns: 1fr;
+  }
+}
+
+.av-settings__field-gap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.av-settings__messages {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.av-settings__message {
+  border: 1px solid var(--av-border);
+  border-radius: 10px;
+  padding: 1rem 1.1rem;
+  background: #fff;
+}
+
+.av-settings__message-key {
+  margin: 0 0 0.75rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--av-muted);
+}
+
+.av-settings__footer {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 0.25rem;
+}

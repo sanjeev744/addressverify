@@ -1,0 +1,221 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model appevent {
+  id        String   @id
+  shop      String
+  level     String
+  message   String   @db.Text
+  context   String?  @db.Text
+  createdAt DateTime @default(now())
+
+  @@index([level, createdAt], map: "AppEvent_level_createdAt_idx")
+  @@index([shop, createdAt], map: "AppEvent_shop_createdAt_idx")
+}
+
+model backgroundjob {
+  id        String   @id
+  shop      String
+  type      String
+  payload   String   @db.Text
+  status    String   @default("queued")
+  attempts  Int      @default(0)
+  nextRunAt DateTime @default(now())
+  lastError String?  @db.Text
+  createdAt DateTime @default(now())
+  updatedAt DateTime
+
+  @@index([shop, type], map: "BackgroundJob_shop_type_idx")
+  @@index([status, nextRunAt], map: "BackgroundJob_status_nextRunAt_idx")
+}
+
+model billingusage {
+  id            String   @id
+  shop          String
+  shopId        String?
+  orderId       String
+  period        String
+  validatedAt   DateTime @default(now())
+  billable      Boolean  @default(false)
+  chargeAmount  Float    @default(0)
+  billingStatus String   @default("skipped")
+  skipReason    String?
+  usageRecordId String?
+  source        String?
+  createdAt     DateTime @default(now())
+
+  @@unique([shop, orderId], map: "BillingUsage_shop_orderId_key")
+  @@index([shop, billingStatus], map: "BillingUsage_shop_billingStatus_idx")
+  @@index([shop, period], map: "BillingUsage_shop_period_idx")
+}
+
+model messagetranslation {
+  id         String @id
+  shop       String
+  messageKey String
+  locale     String
+  title      String @db.Text
+  body       String @db.Text
+
+  @@unique([shop, messageKey, locale], map: "MessageTranslation_shop_messageKey_locale_key")
+  @@index([shop, locale], map: "MessageTranslation_shop_locale_idx")
+}
+
+model orderhold {
+  id               String    @id
+  shop             String
+  orderId          String
+  orderName        String
+  reason           String    @db.Text
+  errorType        String?
+  status           String    @default("open")
+  originalAddress  String    @db.Text
+  suggestedAddress String?   @db.Text
+  fulfillmentIds   String?   @db.Text
+  createdAt        DateTime  @default(now())
+  releasedAt       DateTime?
+
+  @@index([shop, orderId], map: "OrderHold_shop_orderId_idx")
+  @@index([shop, status], map: "OrderHold_shop_status_idx")
+}
+
+model ordertagsetting {
+  id     String @id
+  shop   String
+  tagKey String
+  tag    String
+
+  @@unique([shop, tagKey], map: "OrderTagSetting_shop_tagKey_key")
+  @@index([shop], map: "OrderTagSetting_shop_idx")
+}
+
+model poboxrule {
+  id             String  @id
+  shop           String
+  name           String
+  action         String  @default("block")
+  country        String  @default("")
+  shippingMethod String  @default("")
+  shippingZone   String  @default("")
+  enabled        Boolean @default(true)
+
+  @@index([shop], map: "PoBoxRule_shop_idx")
+}
+
+model session {
+  id                  String    @id
+  shop                String
+  state               String
+  isOnline            Boolean   @default(false)
+  scope               String?   @db.Text
+  expires             DateTime?
+  accessToken         String    @db.Text
+  userId              BigInt?
+  firstName           String?
+  lastName            String?
+  email               String?
+  accountOwner        Boolean   @default(false)
+  locale              String?
+  collaborator        Boolean?  @default(false)
+  emailVerified       Boolean?  @default(false)
+  refreshToken        String?   @db.Text
+  refreshTokenExpires DateTime?
+}
+
+model shopsettings {
+  id                        String    @id
+  shop                      String    @unique(map: "ShopSettings_shop_key")
+  validationEnabled         Boolean   @default(true)
+  failClosed                Boolean   @default(false)
+  providerType              String    @default("builtin")
+  providerApiUrl            String?   @db.Text
+  providerApiKey            String?   @db.Text
+  providerTimeoutMs         Int       @default(2500)
+  functionId                String?
+  validationGid             String?
+  onboarded                 Boolean   @default(false)
+  createdAt                 DateTime  @default(now())
+  updatedAt                 DateTime
+  avgOrderValue             Float     @default(85)
+  avgReshipCost             Float     @default(12)
+  avgSupportCost            Float     @default(8)
+  billingStatus             String    @default("none")
+  estimatedCorrectionRate   Float     @default(0.7)
+  fallbackProviderApiKey    String?   @db.Text
+  fallbackProviderApiUrl    String?   @db.Text
+  fallbackProviderType      String    @default("builtin")
+  holdInvalid               Boolean   @default(true)
+  holdPoBox                 Boolean   @default(false)
+  holdReview                Boolean   @default(true)
+  holdUnconfirmed           Boolean   @default(false)
+  klaviyoApiKey             String?   @db.Text
+  klaviyoEnabled            Boolean   @default(false)
+  monthlyValidations        Int       @default(0)
+  onboardingStep            Int       @default(0)
+  planHandle                String    @default("usage_tier_1")
+  postCheckoutEnabled       Boolean   @default(true)
+  postCheckoutMinConfidence Float     @default(0.8)
+  postCheckoutMode          String    @default("auto")
+  usageResetAt              DateTime?
+  shopGid                   String?
+  usageLineItemId           String?
+  billingOrderCountOverride Int?
+}
+
+model validationlog {
+  id                     String   @id
+  shop                   String
+  createdAt              DateTime @default(now())
+  checkoutRef            String?
+  orderRef               String?
+  customerId             String?
+  country                String?
+  originalAddress        String   @db.Text
+  correctedAddress       String?  @db.Text
+  result                 String
+  errorType              String?
+  actionTaken            String?
+  confidence             Float?
+  source                 String   @default("checkout")
+  correctedAutomatically Boolean  @default(false)
+  held                   Boolean  @default(false)
+  locale                 String?
+  manuallyCorrected      Boolean  @default(false)
+  postalCode             String?
+  reviewRequired         Boolean  @default(false)
+  shippingMethod         String?
+
+  @@index([shop, createdAt], map: "ValidationLog_shop_createdAt_idx")
+  @@index([shop, customerId], map: "ValidationLog_shop_customerId_idx")
+  @@index([shop, errorType], map: "ValidationLog_shop_errorType_idx")
+  @@index([shop, orderRef], map: "ValidationLog_shop_orderRef_idx")
+  @@index([shop, result], map: "ValidationLog_shop_result_idx")
+}
+
+model validationmessage {
+  id         String @id
+  shop       String
+  messageKey String
+  title      String @db.Text
+  body       String @db.Text
+
+  @@unique([shop, messageKey], map: "ValidationMessage_shop_messageKey_key")
+  @@index([shop], map: "ValidationMessage_shop_idx")
+}
+
+model validationrule {
+  id      String  @id
+  shop    String
+  ruleKey String
+  enabled Boolean @default(true)
+  action  String  @default("block")
+
+  @@unique([shop, ruleKey], map: "ValidationRule_shop_ruleKey_key")
+  @@index([shop], map: "ValidationRule_shop_idx")
+}

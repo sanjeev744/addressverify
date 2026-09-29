@@ -1,0 +1,18 @@
+api_version = "2025-10"
+
+[[extensions]]
+name = "AddressVerify Validation"
+handle = "address-verify-function"
+type = "function"
+description = "Blocks checkout when shipping address rules fail."
+uid = "address-verify-function"
+
+  [[extensions.targeting]]
+  target = "cart.validations.generate.run"
+  input_query = "src/run.graphql"
+  export = "cart-validations-generate-run"
+
+  [extensions.build]
+  command = ""
+  path = "dist/function.wasm"
+  watch = ["src/**/*.js", "src/**/*.graphql"]

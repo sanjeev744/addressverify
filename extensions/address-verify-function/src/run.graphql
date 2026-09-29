@@ -1,0 +1,23 @@
+query CartValidationsGenerateRunInput {
+  cart {
+    deliveryGroups {
+      selectedDeliveryOption {
+        title
+        deliveryMethodType
+      }
+      deliveryAddress {
+        address1
+        address2
+        city
+        provinceCode
+        zip
+        countryCode
+      }
+    }
+  }
+  shop {
+    metafield(namespace: "$app:addressverify", key: "config") {
+      jsonValue
+    }
+  }
+}

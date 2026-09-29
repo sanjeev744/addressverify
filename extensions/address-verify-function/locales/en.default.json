@@ -1,0 +1,4 @@
+{
+  "name": "AddressVerify Validation",
+  "description": "Validates shipping addresses before checkout can complete."
+}

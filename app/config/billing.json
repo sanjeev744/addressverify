@@ -1,0 +1,33 @@
+{
+  "currencyCode": "USD",
+  "cappedAmount": 10000,
+  "trialDays": 0,
+  "supportTier": "standard",
+  "features": ["*"],
+  "tiers": [
+    {
+      "handle": "usage_tier_1",
+      "name": "Starter",
+      "minOrders": 1,
+      "maxOrders": 500,
+      "pricePerOrder": 0.4,
+      "terms": "$0.40 / order for stores with 1–500 orders — charged once per unique Shopify order processed"
+    },
+    {
+      "handle": "usage_tier_2",
+      "name": "Growth",
+      "minOrders": 501,
+      "maxOrders": 1500,
+      "pricePerOrder": 0.3,
+      "terms": "$0.30 / order for stores with 501–1,500 orders — charged once per unique Shopify order processed"
+    },
+    {
+      "handle": "usage_tier_3",
+      "name": "Scale",
+      "minOrders": 1501,
+      "maxOrders": null,
+      "pricePerOrder": 0.2,
+      "terms": "$0.20 / order for stores with 1,501+ orders — charged once per unique Shopify order processed"
+    }
+  ]
+}
